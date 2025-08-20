@@ -4,6 +4,10 @@ plugins {
     id 'kotlin-kapt'
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+def newsApiKey = localProperties.getProperty("NEWS_API_KEY") ?: ""
+
 android {
     namespace 'com.example.curiate'
     compileSdk 35
@@ -14,12 +18,16 @@ android {
         targetSdk 35
         versionCode 1
         versionName "1.0"
+
+        buildConfigField("String", "NEWS_API_KEY", "\"$newsApiKey\"")
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
-        viewBinding true
-        dataBinding true
+        buildConfig = true
+        viewBinding = true
+        dataBinding = true
     }
 
     buildTypes {
