@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.curiate.R
-import com.example.curiate.domain.models.NewsData
+import com.example.curiate.domain.models.NewsArticle
 
-class ExploreListAdapter: ListAdapter<NewsData, ExploreListAdapter.ExploreItemViewHolder>(ExploreItemDiffCallback()) {
+class ExploreListAdapter: ListAdapter<NewsArticle, ExploreListAdapter.ExploreItemViewHolder>(ExploreItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExploreItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -29,20 +29,20 @@ class ExploreListAdapter: ListAdapter<NewsData, ExploreListAdapter.ExploreItemVi
     }
 
     class ExploreItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val imageView = itemView.findViewById<ImageView>(R.id.article_image)
-        val sourceNameTextView = itemView.findViewById<TextView>(R.id.source_name_text)
-        val timeTextView = itemView.findViewById<TextView>(R.id.time_ago_text)
-        val titleTextView = itemView.findViewById<TextView>(R.id.article_title_text)
-        val contentTextView = itemView.findViewById<TextView>(R.id.article_summary_text)
-        val authorTextView = itemView.findViewById<TextView>(R.id.author_text)
+        val sourceNameTextView: TextView = itemView.findViewById(R.id.source_name_text)
+        val timeTextView: TextView = itemView.findViewById(R.id.time_ago_text)
+        val titleTextView: TextView = itemView.findViewById(R.id.article_title_text)
+        val contentTextView: TextView = itemView.findViewById(R.id.article_summary_text)
+        val authorTextView: TextView = itemView.findViewById(R.id.author_text)
+        val imageView: ImageView = itemView.findViewById(R.id.article_image)
     }
 
-    class ExploreItemDiffCallback: DiffUtil.ItemCallback<NewsData>() {
-        override fun areItemsTheSame(oldItem: NewsData, newItem: NewsData): Boolean {
-            return oldItem.id == newItem.id
+    class ExploreItemDiffCallback: DiffUtil.ItemCallback<NewsArticle>() {
+        override fun areItemsTheSame(oldItem: NewsArticle, newItem: NewsArticle): Boolean {
+            return oldItem.title == newItem.title
         }
 
-        override fun areContentsTheSame(oldItem: NewsData, newItem: NewsData): Boolean {
+        override fun areContentsTheSame(oldItem: NewsArticle, newItem: NewsArticle): Boolean {
             return oldItem == newItem
         }
     }
