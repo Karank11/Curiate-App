@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_saved"
+        android:enabled="true"
+        android:icon="@drawable/ic_save"
+        android:title="@string/saved"/>
+    <item
+        android:id="@+id/item_explore"
+        android:enabled="true"
+        android:icon="@drawable/ic_explore"
+        android:title="@string/explore"/>
+    <item
+        android:id="@+id/item_collection"
+        android:enabled="true"
+        android:icon="@drawable/collections_bookmark"
+        android:title="@string/collection"/>
+
+</menu>

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Curiate</string>
+    <string name="saved">Saved</string>
+    <string name="explore">Explore</string>
+    <string name="collection">Collection</string>
+    <string name="search">Search</string>
 </resources>
