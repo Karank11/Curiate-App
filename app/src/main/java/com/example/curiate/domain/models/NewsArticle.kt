@@ -3,12 +3,12 @@ package com.example.curiate.domain.models
 import com.example.curiate.data.network.ArticleDto
 
 data class NewsArticle (
-    val imageUrl: String,
-    val sourceName: String,
-    val publishedAt: String,
-    val title: String,
-    val content: String,
-    val author: String,
+    val imageUrl: String? = "www.image.com",
+    val sourceName: String? = "Source Name",
+    val publishedAt: String? = "9:00",
+    val title: String? = "Title",
+    val content: String? = "Content",
+    val author: String? = "Author Name",
 )
 
 fun newsResponseDtoMapToNewsArticle(articleList: List<ArticleDto>) = articleList.map { articleDto ->

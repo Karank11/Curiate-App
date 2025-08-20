@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.curiate.R
 import com.example.curiate.domain.models.NewsArticle
 
@@ -26,6 +27,9 @@ class ExploreListAdapter: ListAdapter<NewsArticle, ExploreListAdapter.ExploreIte
         holder.titleTextView.text = articleItem.title
         holder.contentTextView.text = articleItem.content
         holder.authorTextView.text = articleItem.author
+        Glide.with(holder.imageView.context)
+            .load(articleItem.imageUrl)
+            .into(holder.imageView)
     }
 
     class ExploreItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

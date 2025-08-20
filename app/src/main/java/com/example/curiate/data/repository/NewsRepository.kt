@@ -11,7 +11,10 @@ class NewsRepository(private val newsApiService: NewsApiService) {
         if (newsResponse.isSuccessful && newsResponse.body() != null) {
             val responseBody = newsResponse.body() ?: throw Exception("Empty response body")
             val articleList = responseBody.articles
-            return newsResponseDtoMapToNewsArticle(articleList)
+            if (articleList.isNotEmpty()) {
+                return newsResponseDtoMapToNewsArticle(articleList)
+            }
+            throw Exception("No articles found")
         } else {
             throw Exception("Failed to fetch news")
         }
