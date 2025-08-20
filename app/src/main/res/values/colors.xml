@@ -2,5 +2,21 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="black_scrim_20">#33000000</color>
+    <!-- App Theme Colors -->
+    <color name="primary">#0D47A1</color>
+    <color name="primary_dark">#002171</color>
+    <color name="accent">#FFAB00</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#1a1a1a</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_tertiary">#8A8A8A</color>
+    <color name="text_on_primary">#FFFFFF</color>
+
+    <!-- UI Component Colors -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="chip_background">#F0F0F0</color>
+    <color name="chip_text">#424242</color>
+    <color name="divider_color">#EEEEEE</color>
+    <color name="icon_tint">#666666</color>
 </resources>

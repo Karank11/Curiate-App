@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme would go in themes.xml, but for this component, we can define specific styles here -->
+
+    <!-- Base Style for Text on the Card -->
+    <style name="Curiate.TextAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!-- Style for the Source Name and Time Ago -->
+    <style name="Curiate.TextAppearance.Meta" parent="Curiate.TextAppearance">
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textColor">@color/text_tertiary</item>
+    </style>
+
+    <!-- Style for the Article Title -->
+    <style name="Curiate.TextAppearance.Title" parent="Curiate.TextAppearance">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_large</item>
+    </style>
+
+    <!-- Style for the Article Summary -->
+    <style name="Curiate.TextAppearance.Summary" parent="Curiate.TextAppearance">
+        <item name="android:textSize">@dimen/font_size_medium</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_medium</item>
+    </style>
+
+    <!-- Style for the Topic Chips -->
+    <style name="Curiate.Chip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+    </style>
+
+</resources>
