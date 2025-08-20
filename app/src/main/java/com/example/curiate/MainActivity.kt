@@ -23,34 +23,6 @@ class MainActivity : AppCompatActivity() {
         setupBottomBar()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_menu, menu)
-        setupSearchBar(menu)
-        return true
-    }
-
-    private fun setupSearchBar(menu: Menu?) {
-        val searchItem = menu?.findItem(R.id.action_search)
-        val searchView = searchItem?.actionView as SearchView
-        val pixels = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 280f, resources.displayMetrics).toInt()
-        searchView.maxWidth = pixels
-        val searchEditText = searchView.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-        searchEditText.background = ContextCompat.getDrawable(this, R.drawable.search_bar_bg)
-        searchEditText.setTextColor(Color.BLACK)
-        searchEditText.setHintTextColor(Color.GRAY)
-
-
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return false
-            }
-        })
-    }
-
     private fun setupBottomBar() {
         val bottomBar: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomBar.setOnItemSelectedListener {
