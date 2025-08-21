@@ -29,10 +29,13 @@
         <item name="android:lineSpacingExtra">@dimen/line_spacing_medium</item>
     </style>
 
-    <!-- Style for the Topic Chips -->
-    <style name="Curiate.Chip" parent="Widget.MaterialComponents.Chip.Action">
-        <item name="chipBackgroundColor">@color/chip_background</item>
-        <item name="android:textColor">@color/chip_text</item>
+    <!-- Style for an image with only the top corners rounded -->
+    <style name="ShapeAppearance.Curiate.TopRoundedImage" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/card_corner_radius</item>
+        <item name="cornerSizeTopRight">@dimen/card_corner_radius</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
 </resources>

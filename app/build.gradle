@@ -86,6 +86,9 @@ dependencies {
     implementation libs.glide
     kapt libs.compiler
 
+    // Jsoup dependency to parse HTML
+    implementation libs.jsoup
+
 
     // Testing Dependencies
     testImplementation libs.junit
