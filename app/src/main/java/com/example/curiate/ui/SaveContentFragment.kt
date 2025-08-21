@@ -3,6 +3,7 @@ package com.example.curiate.ui
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.jsoup.Jsoup
 
 class SaveContentFragment : BottomSheetDialogFragment() {
@@ -69,9 +72,10 @@ class SaveContentFragment : BottomSheetDialogFragment() {
             initialTitle = text?.substringBefore(sharedUrl)?.trim()
         }
         lifecycleScope.launch {
-            val previewData = fetchLinkPreview(sharedUrl)
+            val resolvedUrl = resolveFinalUrl(sharedUrl)
+            val previewData = fetchLinkPreview(resolvedUrl) ?: return@launch
             contentTitleView.text = previewData.title.ifEmpty { initialTitle ?: "" }
-            contentUrlView.text = previewData.contentUrl
+            contentUrlView.text = previewData.contentUrl.ifEmpty { sharedUrl }
 
             // if imageUrl is http then convert it to https
             var imageUrl = previewData.imageUrl
@@ -114,15 +118,46 @@ class SaveContentFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private suspend fun fetchLinkPreview(sharedUrl: String): LinkPreviewData {
+    private suspend fun resolveFinalUrl(url: String): String {
         return withContext(Dispatchers.IO) {
-            val doc = Jsoup.connect(sharedUrl).get()
-            val title = doc.select("meta[property=og:title]").attr("content").ifEmpty {
-                doc.title()
-            } ?: ""
-            val imageUrl = doc.select("meta[property=og:image]").attr("content") ?: ""
-            val contentUrl = doc.select("meta[property=og:url]").attr("content") ?: ""
-            LinkPreviewData(imageUrl, title, contentUrl)
+            try {
+                val client = OkHttpClient.Builder().followRedirects(true).build()
+                val request = Request.Builder()
+                    .url(url)
+                    .header("User-Agent", "Mozilla/5.0 (Android)") // important
+                    .build()
+                client.newCall(request).execute().use { response ->
+                    response.request.url.toString()
+                }
+            } catch (e: Exception) {
+                Log.d(TAG, "resolveFinalUrl: $e")
+                url
+            }
+        }
+    }
+
+    private suspend fun fetchLinkPreview(sharedUrl: String): LinkPreviewData? {
+        return withContext(Dispatchers.IO) {
+            try {
+                val doc = Jsoup.connect(sharedUrl)
+                    .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)") // fake browser
+                    .referrer("http://www.google.com")
+                    .header("Accept-Language", "en-US,en;q=0.9")
+                    .referrer("https://www.google.com")
+                    .timeout(10000) // 10 seconds
+                    .followRedirects(true)
+                    .get()
+
+                val title = doc.select("meta[property=og:title]").attr("content").ifEmpty {
+                    doc.title()
+                } ?: ""
+                val imageUrl = doc.select("meta[property=og:image]").attr("content") ?: ""
+                val contentUrl = doc.select("meta[property=og:url]").attr("content") ?: ""
+                LinkPreviewData(imageUrl, title, contentUrl)
+            } catch (e: Exception) {
+                Log.d(TAG, "fetchLinkPreview: $e")
+                null
+            }
         }
     }
 
