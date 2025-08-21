@@ -97,7 +97,7 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/content_image"
                 android:layout_width="0dp"
-                android:layout_height="160dp"
+                android:layout_height="260dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -167,6 +167,6 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:constraint_referenced_ids="preview_card"
-        tools:visibility="gone"/>
+        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

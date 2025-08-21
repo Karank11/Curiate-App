@@ -73,8 +73,14 @@ class SaveContentFragment : BottomSheetDialogFragment() {
             contentTitleView.text = previewData.title.ifEmpty { initialTitle ?: "" }
             contentUrlView.text = previewData.contentUrl
 
+            // if imageUrl is http then convert it to https
+            var imageUrl = previewData.imageUrl
+            if (imageUrl.startsWith("http:")) {
+                imageUrl = imageUrl.replaceFirst("http:", "https:")
+            }
+
             Glide.with(this@SaveContentFragment)
-                .load(previewData.imageUrl)
+                .load(imageUrl)
                 .placeholder(R.drawable.ic_placeholder_image)
                 .into(contentImageView)
 
