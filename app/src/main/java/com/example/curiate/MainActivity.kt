@@ -1,14 +1,8 @@
 package com.example.curiate
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.TypedValue
-import android.view.Menu
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import com.example.curiate.ui.collectionscreen.CollectionFragment
 import com.example.curiate.ui.explorescreen.ExploreFragment
 import com.example.curiate.ui.savedscreen.SavedScreenFragment

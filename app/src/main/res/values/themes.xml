@@ -5,4 +5,37 @@
     </style>
 
     <style name="Theme.Curiate" parent="Base.Theme.Curiate" />
+
+    <style name="Theme.Curiate.BottomSheet" parent="Theme.Material3.DayNight.BottomSheetDialog">
+
+        <!-- Options to satisfy AppCompatActivity -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowIsFloating">true</item>
+
+        <!-- Options to style the background and behavior -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+
+        <!-- Options to style the content -->
+        <item name="bottomSheetStyle">@style/Widget.Curiate.BottomSheet.Modal</item>
+    </style>
+
+    <style name="Widget.Curiate.BottomSheet.Modal" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="android:background">@color/card_background</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Curiate.BottomSheetDialog</item>
+    </style>
+
+    <style name="ShapeAppearance.Curiate.BottomSheetDialog" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">16dp</item>
+        <item name="cornerSizeTopRight">16dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
 </resources>
