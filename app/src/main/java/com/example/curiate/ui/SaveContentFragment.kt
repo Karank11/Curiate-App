@@ -16,6 +16,8 @@ import androidx.constraintlayout.widget.Group
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.curiate.R
+import com.example.curiate.data.database.CuriateDatabase
+import com.example.curiate.data.database.savedcontent.SavedContentEntity
 import com.example.curiate.domain.models.LinkPreviewData
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.Dispatchers
@@ -71,17 +73,25 @@ class SaveContentFragment : BottomSheetDialogFragment() {
         if (initialTitle.isNullOrEmpty()) {
             initialTitle = text?.substringBefore(sharedUrl)?.trim()
         }
+        var postData: LinkPreviewData? = null
         lifecycleScope.launch {
             val resolvedUrl = resolveFinalUrl(sharedUrl)
             val previewData = fetchLinkPreview(resolvedUrl) ?: return@launch
-            contentTitleView.text = previewData.title.ifEmpty { initialTitle ?: "" }
-            contentUrlView.text = previewData.contentUrl.ifEmpty { sharedUrl }
+            val contentTitle = previewData.title.ifEmpty { initialTitle ?: "" }
+            val contentUrl = previewData.contentUrl.ifEmpty { sharedUrl }
+            contentTitleView.text = contentTitle
+            contentUrlView.text = contentUrl
 
             // if imageUrl is http then convert it to https
             var imageUrl = previewData.imageUrl
             if (imageUrl.startsWith("http:")) {
                 imageUrl = imageUrl.replaceFirst("http:", "https:")
             }
+            postData = LinkPreviewData(
+                imageUrl = imageUrl,
+                title = contentTitle,
+                contentUrl = contentUrl
+            )
 
             Glide.with(this@SaveContentFragment)
                 .load(imageUrl)
@@ -96,11 +106,23 @@ class SaveContentFragment : BottomSheetDialogFragment() {
 
         saveButton.setOnClickListener {
             // Handle save button click
+            postData?.let {
+                insertSavedPostToDatabase(it)
+            }
             dismiss()
         }
 
         closeButton.setOnClickListener {
             dismiss()
+        }
+    }
+
+    private fun insertSavedPostToDatabase(postData: LinkPreviewData) {
+        lifecycleScope.launch {
+            val database = CuriateDatabase.getInstance(requireContext()).savedContentDao
+            withContext(Dispatchers.IO) {
+                database.insertSavedContent(SavedContentEntity(postData.contentUrl, postData.imageUrl, postData.title))
+            }
         }
     }
 

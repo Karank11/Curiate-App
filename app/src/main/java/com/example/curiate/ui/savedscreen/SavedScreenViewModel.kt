@@ -15,8 +15,12 @@ class SavedScreenViewModel(private val database: SavedContentDao, private val ap
     private val _savedPosts = MutableLiveData<List<SavedContentData>>()
     val savedPosts: LiveData<List<SavedContentData>> get() = _savedPosts
 
-    fun fetchSavedPosts() {
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
+    fun getSavedPostsFromDatabase() {
         viewModelScope.launch {
+            _isLoading.value = true
             val savedContentEntityList = database.getAllSavedContent()
             val savedContentDataList = savedContentEntityList.map { entity ->
                 SavedContentData(
@@ -26,7 +30,7 @@ class SavedScreenViewModel(private val database: SavedContentDao, private val ap
                 )
             }
             _savedPosts.value = savedContentDataList
-
+            _isLoading.value = false
         }
     }
 

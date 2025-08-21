@@ -9,7 +9,7 @@ import com.example.curiate.data.database.savedcontent.SavedContentEntity
 
 @Database(entities = [SavedContentEntity::class], version = 1, exportSchema = false)
 abstract class CuriateDatabase: RoomDatabase() {
-    abstract fun savedContentDao(): SavedContentDao
+    abstract val savedContentDao: SavedContentDao
 
     companion object {
         @Volatile
