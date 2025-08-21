@@ -3,8 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <!-- App Theme Colors -->
-    <color name="primary">#0D47A1</color>
-    <color name="primary_dark">#002171</color>
+    <color name="primary">#6750A4</color>
+    <color name="primary_dark">#6750A4</color>
     <color name="accent">#FFAB00</color>
 
     <!-- Text Colors -->

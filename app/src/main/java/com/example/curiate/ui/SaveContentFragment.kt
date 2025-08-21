@@ -79,6 +79,7 @@ class SaveContentFragment : BottomSheetDialogFragment() {
                 .into(contentImageView)
 
             saveButton.isEnabled = true
+            saveButton.setBackgroundColor(resources.getColor(R.color.primary_dark))
             contentGroup.visibility = View.VISIBLE
             loadingGroup.visibility = View.GONE
         }
