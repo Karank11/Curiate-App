@@ -3,7 +3,7 @@ package com.example.curiate
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.curiate.ui.SaveContentFragment
+import com.example.curiate.ui.savecontentbottomsheet.SaveContentFragment
 
 class ShareReceiverActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

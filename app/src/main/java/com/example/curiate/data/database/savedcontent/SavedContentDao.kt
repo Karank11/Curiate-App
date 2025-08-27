@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface SavedContentDao {
-    @Query("SELECT * FROM saved_content_table")
+    @Query("SELECT * FROM saved_content_table ORDER BY id DESC")
     suspend fun getAllSavedContent(): List<SavedContentEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
