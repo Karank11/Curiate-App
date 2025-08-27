@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/card_background"
     android:paddingBottom="@dimen/spacing_medium"
-    tools:context=".ui.SaveContentFragment">
+    tools:context=".ui.savecontentbottomsheet.SaveContentFragment">
 
     <View
         android:id="@+id/drag_handle"
