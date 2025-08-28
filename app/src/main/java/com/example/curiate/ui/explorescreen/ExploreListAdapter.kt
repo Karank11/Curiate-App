@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.curiate.R
 import com.example.curiate.domain.models.NewsArticle
 
-class ExploreListAdapter: ListAdapter<NewsArticle, ExploreListAdapter.ExploreItemViewHolder>(ExploreItemDiffCallback()) {
+class ExploreListAdapter(private val onPostClick: (url: String) -> Unit): ListAdapter<NewsArticle, ExploreListAdapter.ExploreItemViewHolder>(ExploreItemDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExploreItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -30,6 +30,10 @@ class ExploreListAdapter: ListAdapter<NewsArticle, ExploreListAdapter.ExploreIte
         Glide.with(holder.imageView.context)
             .load(articleItem.imageUrl)
             .into(holder.imageView)
+
+        holder.itemView.setOnClickListener {
+            onPostClick(articleItem.url ?: "")
+        }
     }
 
     class ExploreItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {

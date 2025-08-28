@@ -9,6 +9,7 @@ data class NewsArticle (
     val title: String? = "Title",
     val content: String? = "Content",
     val author: String? = "Author Name",
+    val url: String? = "https://www.google.com"
 )
 
 fun newsResponseDtoMapToNewsArticle(articleList: List<ArticleDto>) = articleList.map { articleDto ->
@@ -18,6 +19,7 @@ fun newsResponseDtoMapToNewsArticle(articleList: List<ArticleDto>) = articleList
         publishedAt = articleDto.publishedAt,
         title = articleDto.title,
         content = articleDto.content,
-        author = articleDto.author
+        author = articleDto.author,
+        url = articleDto.url
     )
 }

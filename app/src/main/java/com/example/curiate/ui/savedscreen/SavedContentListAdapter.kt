@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.curiate.R
 import com.example.curiate.domain.models.SavedContentData
 
-class SavedContentListAdapter: ListAdapter<SavedContentData, SavedContentListAdapter.SavedContentViewHolder>(SavedContentDiffCallback()) {
+class SavedContentListAdapter(private val onPostClick: (url: String) -> Unit): ListAdapter<SavedContentData, SavedContentListAdapter.SavedContentViewHolder>(SavedContentDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SavedContentViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -27,6 +27,10 @@ class SavedContentListAdapter: ListAdapter<SavedContentData, SavedContentListAda
         Glide.with(holder.contentImageView.context)
             .load(item.imageUrl)
             .into(holder.contentImageView)
+
+        holder.itemView.setOnClickListener {
+            onPostClick(item.contentUrl)
+        }
     }
 
     class SavedContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
