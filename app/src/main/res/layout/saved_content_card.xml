@@ -9,13 +9,12 @@
     android:layout_marginHorizontal="@dimen/card_margin_horizontal"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation"
-    app:strokeWidth="0dp">
+    app:strokeWidth="0dp"
+    app:cardBackgroundColor="?attr/colorSurface">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/card_background"
-        android:paddingBottom="@dimen/spacing_medium">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/content_image"
@@ -62,7 +61,7 @@
             android:id="@+id/divider"
             android:layout_width="0dp"
             android:layout_height="@dimen/divider_height"
-            android:background="@color/divider_color"
+            android:background="?attr/colorOnSurface"
             android:layout_marginTop="@dimen/spacing_medium"
             app:layout_constraintStart_toStartOf="@id/content_title"
             app:layout_constraintEnd_toEndOf="@id/content_title"
@@ -72,13 +71,11 @@
             android:id="@+id/content_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="serif"
+            style="@style/Curiate.TextAppearance.Category"
             android:background="@drawable/chip_background"
             android:paddingVertical="8dp"
             android:paddingHorizontal="14dp"
-            android:textColor="@android:color/black"
-            android:textSize="12sp"
-            android:text="Category"
+            android:text="@string/category"
             app:layout_constraintStart_toStartOf="@id/content_title"
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -89,7 +86,7 @@
             android:layout_height="@dimen/icon_button_size"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_share"
-            app:tint="@color/icon_tint"
+            app:tint="?attr/colorOnSurface"
             app:layout_constraintEnd_toEndOf="@id/content_title"
             app:layout_constraintTop_toBottomOf="@id/divider"
             app:layout_constraintBottom_toBottomOf="parent"/>

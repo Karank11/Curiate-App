@@ -13,6 +13,14 @@
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
+    <!-- Style for Category Text-->
+    <style name="Curiate.TextAppearance.Category" parent="Curiate.TextAppearance">
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/font_size_medium</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+    </style>
+
     <!-- Style for the Article Title -->
     <style name="Curiate.TextAppearance.Title" parent="Curiate.TextAppearance">
         <item name="android:fontFamily">serif</item>
