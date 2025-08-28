@@ -16,8 +16,7 @@
     <!-- Style for Category Text-->
     <style name="Curiate.TextAppearance.Category" parent="Curiate.TextAppearance">
         <item name="android:fontFamily">serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">@dimen/font_size_medium</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
     </style>
 
