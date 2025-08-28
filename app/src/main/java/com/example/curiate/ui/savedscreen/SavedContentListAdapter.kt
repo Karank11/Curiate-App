@@ -24,6 +24,7 @@ class SavedContentListAdapter(private val onPostClick: (url: String) -> Unit): L
         val item = getItem(position)
         holder.contentTitleTextView.text = item.title
         holder.contentUrlTextView.text = item.contentUrl
+        holder.categoryTextView.text = item.category
         Glide.with(holder.contentImageView.context)
             .load(item.imageUrl)
             .into(holder.contentImageView)
@@ -37,6 +38,7 @@ class SavedContentListAdapter(private val onPostClick: (url: String) -> Unit): L
         val contentImageView: ImageView = itemView.findViewById(R.id.content_image)
         val contentTitleTextView: TextView = itemView.findViewById(R.id.content_title)
         val contentUrlTextView: TextView = itemView.findViewById(R.id.content_url)
+        val categoryTextView: TextView = itemView.findViewById(R.id.content_category)
     }
 
     class SavedContentDiffCallback: DiffUtil.ItemCallback<SavedContentData>() {

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.curiate.data.database.savedcontent.SavedContentDao
 import com.example.curiate.data.database.savedcontent.SavedContentEntity
 
-@Database(entities = [SavedContentEntity::class], version = 1, exportSchema = false)
+@Database(entities = [SavedContentEntity::class], version = 2, exportSchema = false)
 abstract class CuriateDatabase: RoomDatabase() {
     abstract val savedContentDao: SavedContentDao
 

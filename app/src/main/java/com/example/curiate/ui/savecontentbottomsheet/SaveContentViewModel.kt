@@ -1,6 +1,7 @@
 package com.example.curiate.ui.savecontentbottomsheet
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -31,6 +32,8 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
+
+    private val _category = MutableLiveData<String>()
 
     fun fetchLinkPreview(args: Bundle){
         viewModelScope.launch {
@@ -68,6 +71,7 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
                     _contentTitle.postValue(title)
                     _contentUrl.postValue(url)
                     _imageUrl.postValue(imgUrl)
+                    _category.postValue(getCategoryName(url))
                 } catch (e: Exception) {
                     Log.d(TAG, "fetchLinkPreview: $e")
                 } finally {
@@ -115,9 +119,20 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
             val savedContentEntity = SavedContentEntity(
                 contentUrl = contentUrl.value ?: "",
                 imageUrl = imageUrl.value ?: "",
-                title = contentTitle.value ?: ""
+                title = contentTitle.value ?: "",
+                category = _category.value ?: ""
             )
             savedContentDao.insertSavedContent(savedContentEntity)
         }
+    }
+
+    private fun getCategoryName(finalUrl: String?): String {
+        val uri = Uri.parse(finalUrl)
+        val host = uri.host ?: ""
+        if (host.isBlank()) {
+            return ""
+        }
+        val noSubdomain = host.removePrefix("www.").removePrefix("m.")
+        return noSubdomain.substringBefore('.')
     }
 }

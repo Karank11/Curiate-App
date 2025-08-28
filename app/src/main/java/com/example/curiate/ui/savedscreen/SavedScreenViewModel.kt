@@ -26,7 +26,8 @@ class SavedScreenViewModel(private val database: SavedContentDao, private val ap
                 SavedContentData(
                     imageUrl = entity.imageUrl,
                     title = entity.title,
-                    contentUrl = entity.contentUrl
+                    contentUrl = entity.contentUrl,
+                    category = entity.category
                 )
             }
             _savedPosts.value = savedContentDataList
@@ -39,7 +40,8 @@ class SavedScreenViewModel(private val database: SavedContentDao, private val ap
             val savedContentEntity = SavedContentEntity(
                 imageUrl = savedContentData.imageUrl,
                 title = savedContentData.title,
-                contentUrl = savedContentData.contentUrl
+                contentUrl = savedContentData.contentUrl,
+                category = savedContentData.category
             )
             database.insertSavedContent(savedContentEntity)
         }

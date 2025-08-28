@@ -17,5 +17,8 @@ data class SavedContentEntity (
     val imageUrl: String,
 
     @ColumnInfo("title")
-    val title: String
+    val title: String,
+
+    @ColumnInfo("category")
+    val category: String
 )
