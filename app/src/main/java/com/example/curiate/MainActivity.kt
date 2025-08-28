@@ -1,8 +1,11 @@
 package com.example.curiate
 
 import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.curiate.ui.collectionscreen.CollectionFragment
 import com.example.curiate.ui.explorescreen.ExploreFragment
 import com.example.curiate.ui.savedscreen.SavedScreenFragment
@@ -15,6 +18,14 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         setupBottomBar()
+
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_random)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            insets
+        }
     }
 
     private fun setupBottomBar() {
