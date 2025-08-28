@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,10 +27,13 @@ class SavedScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
-        toolbar.title = "Saved Posts"
         val recyclerView: RecyclerView = view.findViewById(R.id.saved_content_recycler_view)
         val progressBar: ProgressBar = view.findViewById(R.id.progressbar)
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+        val emptyGroup: Group = view.findViewById(R.id.empty_group)
+        val postsGroup: Group = view.findViewById(R.id.posts_group)
+
+        toolbar.title = "Saved Posts"
         progressBar.visibility = View.VISIBLE
 
         val database = CuriateDatabase.getInstance(requireContext()).savedContentDao
@@ -40,12 +44,16 @@ class SavedScreenFragment : Fragment() {
         val adapter = SavedContentListAdapter { contentUrl ->
             onPostClick(contentUrl)
         }
-
         recyclerView.adapter = adapter
 
-        viewModel.savedPosts.observe(viewLifecycleOwner) {
-            it?.let {
-                adapter.submitList(it)
+        viewModel.savedPosts.observe(viewLifecycleOwner) { list ->
+            if (list.isNullOrEmpty()) {
+                emptyGroup.visibility = View.VISIBLE
+                postsGroup.visibility = View.GONE
+            } else {
+                emptyGroup.visibility = View.GONE
+                postsGroup.visibility = View.VISIBLE
+                adapter.submitList(list)
             }
         }
 

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         setupBottomBar()
-        val surfaceColor = MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, Color.BLACK)
+        val surfaceColor = MaterialColors.getColor(this, com.google.android.material.R.attr.colorPrimary, Color.BLACK)
         // Apply status bar color
         window.statusBarColor = surfaceColor
         // Handle light/dark icons automatically
