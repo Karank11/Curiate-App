@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.browser.customtabs.CustomTabColorSchemeParams
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
@@ -25,6 +26,8 @@ class SavedScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val toolbar: Toolbar = requireActivity().findViewById(R.id.toolbar)
+        toolbar.title = "Saved Posts"
         val recyclerView: RecyclerView = view.findViewById(R.id.saved_content_recycler_view)
         val progressBar: ProgressBar = view.findViewById(R.id.progressbar)
         progressBar.visibility = View.VISIBLE

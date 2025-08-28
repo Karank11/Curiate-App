@@ -10,7 +10,7 @@
     <!-- Style for the Source Name and Time Ago -->
     <style name="Curiate.TextAppearance.Meta" parent="Curiate.TextAppearance">
         <item name="android:textSize">@dimen/font_size_small</item>
-        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
     <!-- Style for the Article Title -->
@@ -18,14 +18,14 @@
         <item name="android:fontFamily">serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/font_size_large</item>
-        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:lineSpacingExtra">@dimen/line_spacing_large</item>
     </style>
 
     <!-- Style for the Article Summary -->
     <style name="Curiate.TextAppearance.Summary" parent="Curiate.TextAppearance">
         <item name="android:textSize">@dimen/font_size_medium</item>
-        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:lineSpacingExtra">@dimen/line_spacing_medium</item>
     </style>
 
