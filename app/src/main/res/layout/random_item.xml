@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/spacing_small"
+    android:layout_marginTop="@dimen/spacing_medium"
     android:layout_marginHorizontal="@dimen/card_margin_horizontal"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation"
@@ -78,10 +78,10 @@
             android:paddingHorizontal="14dp"
             android:textColor="@android:color/black"
             android:textSize="12sp"
-            android:text="Category"
             app:layout_constraintStart_toStartOf="@id/content_title"
             app:layout_constraintTop_toBottomOf="@id/divider"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Flipkart" />
 
         <ImageButton
             android:id="@+id/share_button"
