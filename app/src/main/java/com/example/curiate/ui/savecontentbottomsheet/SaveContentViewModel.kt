@@ -49,7 +49,6 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
                         .userAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64)") // fake browser
                         .referrer("http://www.google.com")
                         .header("Accept-Language", "en-US,en;q=0.9")
-                        .referrer("https://www.google.com")
                         .timeout(10000) // 10 seconds
                         .followRedirects(true)
                         .get()
@@ -93,6 +92,7 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
     }
 
     private suspend fun resolveFinalUrl(url: String): String {
+        if (url.contains("youtube")) return url
         return withContext(Dispatchers.IO) {
             try {
                 val client = OkHttpClient.Builder().followRedirects(true).build()

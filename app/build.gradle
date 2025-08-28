@@ -89,6 +89,8 @@ dependencies {
     // Jsoup dependency to parse HTML
     implementation libs.jsoup
 
+    implementation(libs.androidx.browser)
+
 
     // Testing Dependencies
     testImplementation libs.junit
