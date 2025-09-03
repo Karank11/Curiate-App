@@ -9,11 +9,11 @@ localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 def newsApiKey = localProperties.getProperty("NEWS_API_KEY") ?: ""
 
 android {
-    namespace 'com.example.curiate'
+    namespace 'com.curiate.android'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.example.curiate"
+        applicationId "com.curiate.android"
         minSdk 24
         targetSdk 35
         versionCode 1

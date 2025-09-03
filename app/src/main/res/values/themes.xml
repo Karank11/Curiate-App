@@ -1,36 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Curiate" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Unify surfaces -->
-        <item name="android:statusBarColor">?attr/colorPrimary</item>
-        <item name="android:navigationBarColor">?attr/colorPrimary</item>
-
-        <!-- Light status bar icons on light background -->
-        <item name="android:windowLightStatusBar">true</item>
-
-        <item name="colorPrimary">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="android:windowBackground">@color/white</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
+    <style name="Base.Theme.Curiate" parent="Theme.Material3.DayNight.NoActionBar" />
 
     <style name="Theme.Curiate" parent="Base.Theme.Curiate" />
 
     <!-- Toolbar -->
     <style name="Widget.Curiate.Toolbar" parent="Widget.Material3.Toolbar">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="titleTextColor">?attr/colorOnPrimary</item>
-        <item name="subtitleTextColor">?attr/colorOnPrimary</item>
         <item name="fontFamily">serif</item>
-        <item name="navigationIconTint">?attr/colorOnPrimary</item>
-        <item name="iconTint">?attr/colorOnPrimary</item>
-        <item name="elevation">4dp</item>
     </style>
+
     <!-- Overflow menu & action menu inside toolbar -->
     <style name="ThemeOverlay.Curiate.Toolbar" parent="ThemeOverlay.Material3.Toolbar.Surface">
-        <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="colorControlNormal">?attr/colorOnSurface</item>
-        <item name="colorControlHighlight">?attr/colorSecondaryContainer</item>
         <item name="android:itemTextAppearance">@style/TextAppearance.Curiate.Toolbar.Menu</item>
     </style>
     <style name="TextAppearance.Curiate.Toolbar.Menu" parent="TextAppearance.Material3.BodyMedium" />
@@ -38,18 +18,8 @@
 
     <!-- Bottom Navigation -->
     <style name="Widget.Curiate.BottomNav" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="iconTint">@color/bnv_icon_color</item>
-        <item name="itemTextColor">@color/bnv_text_color</item>
-
-        <item name="itemRippleColor">?attr/colorSecondaryContainer</item>
-
-        <!-- Active indicator (pill behind selected item) -->
-        <item name="itemActiveIndicatorStyle">@style/Widget.Curiate.BottomNav.ActiveIndicator</item>
-        <item name="elevation">8dp</item>
     </style>
     <style name="Widget.Curiate.BottomNav.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">?attr/colorSecondaryContainer</item>
         <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Material3.Corner.Full</item>
     </style>
 
