@@ -2,5 +2,5 @@
     <!-- Selected icon -->
     <item android:state_checked="true" android:color="?attr/colorOnPrimary"/>
     <!-- Unselected icon -->
-    <item android:color="@color/black"/>
+    <item android:color="?attr/colorOnSurfaceVariant" android:state_checked="false"/>
 </selector>
