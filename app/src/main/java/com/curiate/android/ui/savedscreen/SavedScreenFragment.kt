@@ -19,7 +19,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.curiate.android.R
@@ -50,7 +50,7 @@ class SavedScreenFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return if (menuItem.itemId == R.id.filter_action_menu) {
                     val filterModal = FilterModal()
-                    filterModal.show(parentFragmentManager, "FilterModal")
+                    filterModal.show(childFragmentManager, "FilterModal")
                     true
                 } else {
                     false
@@ -61,7 +61,7 @@ class SavedScreenFragment : Fragment() {
         progressBar.visibility = View.VISIBLE
 
         val database = CuriateDatabase.getInstance(requireContext()).savedContentDao
-        val viewModel: SavedScreenViewModel by viewModels {
+        val viewModel: SavedScreenViewModel by activityViewModels {
             SavedScreenViewModelFactory(database, requireActivity().application)
         }
 

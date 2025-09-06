@@ -103,10 +103,11 @@
         app:layout_constraintEnd_toEndOf="@id/sort_chips">
 
         <AutoCompleteTextView
+            android:id="@+id/filter_options"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none"
-            android:text="@string/option_1"
+            android:text="@string/all"
             android:labelFor="@id/filter_dropdown"/>
 
     </com.google.android.material.textfield.TextInputLayout>
