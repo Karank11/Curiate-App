@@ -33,6 +33,31 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val predefinedCategories = arrayOf(
+        // Social Media
+        "WhatsApp", "Instagram", "Facebook", "Telegram", "ShareChat",
+        "Moj", "Josh", "Twitter", "Snapchat", "LinkedIn", "Reddit",
+
+        // Entertainment
+        "YouTube", "MX Player", "JioCinema", "Netflix",
+        "Spotify", "JioSaavn", "Gaana", "Music",
+
+        // Google Services
+        "Gmail", "Google Drive", "Google Photos", "Chrome",
+        "Google News", "Google Pay",
+
+        // Productivity
+        "Microsoft Word", "Microsoft Excel", "Microsoft PowerPoint",
+        "Adobe Acrobat Reader", "Truecaller",
+
+        // E-commerce & Payment
+        "Amazon", "Flipkart", "Myntra", "Paytm Mall", "PhonePe", "Paytm",
+        "Blinkit", "Swiggy", "Zomato",
+
+        // News
+        "Inshorts", "Times of India", "NDTV"
+    )
+
     private val _category = MutableLiveData<String>()
 
     fun fetchLinkPreview(args: Bundle){
@@ -122,7 +147,11 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
                 title = contentTitle.value ?: "",
                 category = _category.value ?: ""
             )
-            savedContentDao.insertSavedContent(savedContentEntity)
+            // check if savedContentEntity is already exist with same contentUrl. If yes, then dont insert this data to db
+            val existingEntity = savedContentDao.getAllSavedContentLatest().find { it.contentUrl == savedContentEntity.contentUrl }
+            if (existingEntity == null) {
+                savedContentDao.insertSavedContent(savedContentEntity)
+            }
         }
     }
 
@@ -133,6 +162,10 @@ class SaveContentViewModel(private val savedContentDao: SavedContentDao): ViewMo
             return ""
         }
         val noSubdomain = host.removePrefix("www.").removePrefix("m.")
-        return noSubdomain.substringBefore('.')
+        var value = noSubdomain.substringBefore('.')
+        if (!predefinedCategories.contains(value)) {
+            value = "Article"
+        }
+        return value
     }
 }
