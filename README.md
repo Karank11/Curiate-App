@@ -7,3 +7,7 @@
 ## Architecture
 * The app is built using Clean Architecture, which separates the code into three distinct layers: UI, Domain, and Data.
 * It uses the MVVM pattern in the UI layer, UseCases for business logic in the Domain layer, and a Repository in the Data layer to manage fetching content from the network (Retrofit) and caching it in a local database (Room).
+
+## Documentation
+
+- See `docs/PROJECT_DOCUMENTATION.md` for a detailed overview, architecture diagrams (Mermaid/PlantUML), and future scope.
